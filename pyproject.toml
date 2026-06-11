@@ -1,0 +1,31 @@
+[project]
+name = "vibefont"
+version = "0.1.0"
+description = "Computer, make font. Builds fonts from images + descriptions using fonttools."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.12"
+dependencies = [
+    "fonttools[ufo,unicode,woff,pathops]>=4.55",
+    "pillow>=11.0",
+    "potracer>=0.0.4",
+    "numpy>=2.0",
+]
+
+[project.scripts]
+vibefont = "vibefont.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vibefont"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
