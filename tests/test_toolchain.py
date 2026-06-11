@@ -25,10 +25,14 @@ def test_pillow_renders_bitmap():
 
 def test_potrace_traces_bitmap_to_curves():
     data = np.zeros((100, 100), dtype=np.uint8)
-    data[25:75, 25:75] = 1
-    path = potrace.Bitmap(data).trace()
+    data[25:75, 25:75] = 255
+    # NOTE: potracer inverts internally (image convention: dark = ink), so
+    # ink pixels must be False going in or it traces the background instead.
+    path = potrace.Bitmap(data < 128).trace()
     curves = list(path)
     assert len(curves) == 1  # one closed contour for the square
+    start = curves[0].start_point
+    assert 24 <= start.x <= 76 and 24 <= start.y <= 76  # on the square, not the canvas edge
 
 
 def test_fontbuilder_compiles_valid_ttf():
