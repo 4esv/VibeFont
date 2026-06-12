@@ -40,14 +40,14 @@ def _hfoot(p: Parts):
 def lc_l(p, m):
     g = Glyph(m, 180)
     g.paste(_limb_h(p), 0)
-    g.erase(119, 60, 180, 460)  # arch spring nub
+    g.erase(111, 60, 180, 460)  # arch spring, flush with the stem
     return g
 
 
 def lc_i(p, m):
     g = Glyph(m, 180)
     g.paste(_limb_n(p), 0)
-    g.erase(119, 60, 180, 360)  # arch spring (n's head flag stays left of it)
+    g.erase(111, 60, 180, 360)  # arch spring (n's head flag stays left of it)
     g.fill_ellipse(91, m.xh + (m.asc - m.xh) * 0.42, 34)
     return g
 
@@ -59,8 +59,9 @@ def lc_j(p, m):
     g.paste(stem, 60)
     g.erase(179, -100, 260, 360)
     # tail sweeps left below the stem, finished with a ball terminal
+    # centered on the tail's end edge so the join doesn't kink
     g.fill_poly([(124, -110), (179, -145), (120, -212), (72, -180)])
-    g.fill_ellipse(82, -180, 36, 31)
+    g.fill_ellipse(94, -194, 34, 30)
     g.fill_ellipse(151, m.xh + (m.asc - m.xh) * 0.42, 34)
     return g
 
@@ -114,7 +115,9 @@ def lc_t(p, m):
     shaft = p.cut("u", 40, 255, -16, 278)
     shaft = shaft.vstretch(486, keep=110)
     g.paste(shaft, -10)  # leaves ~45px of crossbar to the left of the shaft
-    g.erase_poly([(30, 600), (30, 380), (118, 460), (118, 600)])  # slant top
+    # slant erase starts left of the shaft's left edge, else a barb of
+    # full-height shaft survives beside the cut
+    g.erase_poly([(-12, 600), (-12, 372), (118, 460), (118, 600)])
     bar = _ebar(p)
     g.paste(bar, 0, dy=m.xh - 232)
     return g
@@ -125,7 +128,7 @@ def lc_f(p, m):
     # stop the shaft cut at 450 so none of h's head flag survives vstretch
     shaft = p.cut("h", 0, 171, -6, 450).vstretch(516, keep=120)
     g.paste(shaft, 0)
-    g.erase(119, 60, 300, 430)
+    g.erase(111, 60, 300, 430)  # arch spring, flush with the stem
     g.paste(_arm_r(p), 116, dy=230)  # hook crowns near ascender height
     g.paste(_ebar(p), 10, dy=m.xh - 232)
     return g
@@ -136,10 +139,11 @@ def lc_k(p, m):
     # thick leg, thin arm, dressed with v's serif and h's foot.
     g = Glyph(m, 420)
     g.paste(_limb_h(p), 0)
-    g.erase(119, 60, 420, 460)
+    g.erase(111, 60, 420, 460)  # arch spring, flush with the stem
     g.fill_poly([(95, 205), (162, 205), (330, 25), (263, 25)])   # leg
     g.fill_poly([(95, 225), (130, 225), (285, 332), (254, 332)])  # arm
-    g.paste(p.cut("v", 245, 385, 305, 345), 187)  # arm serif + stroke tip
+    # serif slab cut past v's curled tip (it floats over the arm as a tick)
+    g.paste(p.cut("v", 262, 385, 305, 345), 204)  # arm serif + stroke tip
     g.paste(_hfoot(p).scaled(0.85), 205)          # leg foot
     return g
 
@@ -157,9 +161,10 @@ def lc_x(p, m):
     g = Glyph(m, 420)
     g.fill_poly([(30, 339), (96, 339), (380, 0), (314, 0)])   # thick TL-BR
     g.fill_poly([(354, 339), (380, 339), (56, 0), (30, 0)])   # thin TR-BL
-    # serif SLABS only — taller cuts drag along offset stroke fragments
-    g.paste(p.cut("v", 0, 175, 325, 345), 20)      # top-left serif
-    g.paste(p.cut("v", 240, 385, 325, 345), 235)   # top-right serif
+    # serif SLABS only — taller cuts drag along offset stroke fragments;
+    # inner ends stop short of v's curled serif tips (they float as ticks)
+    g.paste(p.cut("v", 0, 160, 325, 345), 20)      # top-left serif
+    g.paste(p.cut("v", 258, 385, 325, 345), 253)   # top-right serif
     g.paste(_hfoot(p).scaled(0.7), 290)            # BR foot
     g.paste(_hfoot(p).scaled(0.7), 5)              # BL foot
     return g
@@ -169,9 +174,9 @@ def lc_y(p, m):
     g = Glyph(m, 420)
     g.paste(p.cut("v"), 30)
     # thin stroke continues through the apex into the descender,
-    # finished with a ball terminal
+    # finished with a ball terminal centered on the tail's end edge
     g.fill_poly([(212, 60), (252, 60), (165, -140), (125, -140)])
-    g.fill_ellipse(128, -148, 38, 32)
+    g.fill_ellipse(142, -152, 36, 30)
     return g
 
 
@@ -209,7 +214,7 @@ def _Ihead(p: Parts):
 def cap_I(p, m):
     g = Glyph(m, 230)
     g.paste(_limb_H(p), 0)
-    g.erase(157, 150, 230, 360)  # crossbar stump
+    g.erase(129, 150, 230, 360)  # crossbar, flush with the stem
     return g
 
 
@@ -220,23 +225,29 @@ def cap_J(p, m):
 
 
 def cap_C(p, m):
+    # G minus bar and spur. The lower arc keeps its natural rise into the
+    # (removed) spur base, chopped to stroke height: an upturned beak.
+    # The upper arc is sheared vertically where it dove toward the bar.
     g = Glyph(m, 570)
     g.paste(p.cut("G"), 0)
-    g.erase(315, -20, 570, 260)  # bar, spur, and the curve stub they fed
+    g.erase(312, 90, 570, 270)   # bar, spur head serif, both wings
+    g.erase(460, -20, 570, 90)   # spur base right of the beak
+    g.erase(462, 250, 570, 560)  # upper terminal shear
     return g
 
 
 def cap_D(p, m):
     g = Glyph(m, 580)
     g.paste(_limb_H(p), 0)
-    g.erase(157, 150, 230, 360)
+    g.erase(129, 150, 230, 360)  # flush with the stem: no crossbar sliver
     # unscaled half-O keeps the bowl at O's natural stroke weight; trim its
     # overshoot so the horizontals sit flush with the stem
     bowl = p.cut("O", 293, 585, -8, 531)
     g.paste(bowl, 280)
-    # bridge the thin cut ends of the half-O back to the stem
-    g.fill_poly([(150, 531), (300, 531), (300, 503), (150, 503)])
-    g.fill_poly([(150, 26), (310, 26), (310, -7), (150, -7)])
+    # bridges taper to the bowl's thin cut ends (519 / 5 at the seam) so
+    # neither underside steps
+    g.fill_poly([(150, 531), (335, 531), (335, 512), (150, 503)])
+    g.fill_poly([(150, 26), (335, 6), (335, -7), (150, -7)])
     return g
 
 
@@ -259,12 +270,13 @@ def cap_L(p, m):
 def cap_K(p, m):
     g = Glyph(m, 560)
     g.paste(_limb_H(p), 0)
-    g.erase(157, 150, 230, 360)
-    g.fill_poly([(150, 290), (230, 290), (470, 35), (390, 35)])    # leg
-    # arm runs into the serif slab so the join can't pinch
-    g.fill_poly([(150, 295), (185, 295), (455, 520), (420, 520)])  # arm
-    g.paste(p.cut("V", 420, 591, 485, 545), 365)  # arm serif
-    g.erase(357, 505, 385, 560)  # detached serif-tip curl (see cap_X)
+    g.erase(129, 150, 230, 360)  # crossbar, flush with the stem
+    # strokes run INTO the stem (x 100 < stem right edge 128) so the waist
+    # joins solid instead of hanging off the old crossbar sliver
+    g.fill_poly([(100, 290), (230, 290), (470, 35), (390, 35)])    # leg
+    g.fill_poly([(100, 295), (135, 295), (455, 520), (420, 520)])  # arm
+    # serif slab cut past V's curled tip and landed on the arm: no float
+    g.paste(p.cut("V", 445, 591, 485, 545), 410)  # arm serif
     g.paste(_Hfoot(p).scaled(0.85), 330)          # leg foot
     return g
 
@@ -273,6 +285,9 @@ def cap_P(p, m):
     g = Glyph(m, 480)
     g.paste(p.cut("R"), 0)
     g.erase(170, -25, 565, 235)  # leg
+    # the leg's spring survives the chop as a tooth under the bowl; shave
+    # it along the bowl's underside line into the right wall
+    g.erase(243, -25, 342, 242)
     g.paste(p.cut("H", 156, 230, -8, 50), 153)  # right foot wing
     return g
 
@@ -334,11 +349,15 @@ def cap_X(p, m):
 
 def cap_Y(p, m):
     # v scaled up, not V cropped: v's apex is a solid point, so the fork
-    # junction lands on the stem without a gap.
-    g = Glyph(m, 440)
-    g.paste(p.cut("v").scaled(0.95, 0.97), 60, dy=200)
-    g.paste(p.cut("H", 0, 156, 0, 260), 120)  # bare stem, no crossbar nub
-    g.paste(_Hfoot(p), 120)
+    # junction lands on the stem without a gap. Widened to cap proportions
+    # (Y was 60% of V's width; the source caps keep a wide, even rhythm).
+    g = Glyph(m, 560)
+    g.paste(p.cut("v").scaled(1.24, 0.97), 25, dy=200)
+    g.paste(p.cut("H", 0, 156, 0, 260), 175)  # bare stem, no crossbar nub
+    g.paste(_Hfoot(p), 175)
+    # fillet the fork-stem junction: the left arm sweeps into the stem
+    # base and the right arm's underside meets the stem top without a slit
+    g.fill_poly([(245, 200), (262, 60), (318, 60), (322, 285)])
     return g
 
 
