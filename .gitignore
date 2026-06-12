@@ -217,6 +217,11 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# macOS
+.DS_Store
+
 # VibeFont
+#   assets/output/ is the build target and regenerates on every run;
+#   curated results live in assets/samples/ and are tracked.
 assets/output/*
 !assets/output/.gitkeep
