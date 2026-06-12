@@ -302,8 +302,9 @@ def cap_Q(p, m):
 
 def cap_T(p, m):
     g = Glyph(m, 560)
-    # stem reaches behind the bar fillets so their seam can't notch
-    stem = p.cut("H", 0, 230, 0, 510)
+    # stem reaches behind the bar fillets so their seam can't notch;
+    # y0=-8 keeps the foot's baseline overshoot (T floated without it)
+    stem = p.cut("H", 0, 230, -8, 510)
     g.paste(stem, 145)
     g.erase(296, 150, 380, 360)  # flush with the stem: no crossbar sliver
     bar = p.cut("E", 150, 400, 440, 535)
@@ -324,11 +325,14 @@ def cap_V_pair(p, m, dx):
 
 
 def cap_W(p, m):
-    g = cap_V_pair(p, m, 380)
+    # dx 300 keeps W near M's width (dx 380 made it 40% wider than M,
+    # wrecking the caps' rhythm); the V's overlap in the classic
+    # crossed-double-V form
+    g = cap_V_pair(p, m, 300)
     # where the two middle serifs lap, the inner rising tips poke above
     # the shared cup and read as ticks; shave them so the dish runs smooth
-    g.erase(426, 526, 472, 560)
-    g.erase(584, 516, 612, 560)
+    g.erase(426, 526, 472, 560)   # V1 right-serif left tip
+    g.erase(488, 526, 532, 560)   # V2 left-serif right tip
     return g
 
 
@@ -352,7 +356,7 @@ def cap_Y(p, m):
     # junction lands on the stem without a gap. Widened to cap proportions
     # (Y was 60% of V's width; the source caps keep a wide, even rhythm).
     g = Glyph(m, 560)
-    g.paste(p.cut("v").scaled(1.24, 0.97), 25, dy=200)
+    g.paste(p.cut("v").scaled(1.24, 0.97), 25, dy=208)
     g.paste(p.cut("H", 0, 156, 0, 260), 175)  # bare stem, no crossbar nub
     g.paste(_Hfoot(p), 175)
     # fillet the fork-stem junction: the left arm sweeps into the stem

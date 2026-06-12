@@ -7,12 +7,13 @@ from PIL import Image, ImageDraw, ImageFont
 
 from vibefont.build import UPM
 from vibefont.segment import SampleSheet
+from vibefont.trace import bearings
 
 COMPARISON_WIDTH = 1600
 
 
 def render_recreation(sheet: SampleSheet, font_path: Path, scale: float,
-                      lsb: float, out: Path) -> Image.Image:
+                      out: Path) -> Image.Image:
     """Draw every glyph at its measured position in the source sheet.
 
     ``scale`` is the pipeline's font-units-per-image-pixel factor, so an em
@@ -24,9 +25,9 @@ def render_recreation(sheet: SampleSheet, font_path: Path, scale: float,
     draw = ImageDraw.Draw(img)
     for box in sheet.boxes:
         # anchor "ls" puts the pen origin at (x, baseline); shift left by the
-        # lsb so the ink lands where the source ink was measured.
-        draw.text((box.left - lsb / scale, box.baseline), box.char,
-                  font=font, fill="black", anchor="ls")
+        # glyph's lsb so the ink lands where the source ink was measured.
+        draw.text((box.left - bearings(box.char)[0] / scale, box.baseline),
+                  box.char, font=font, fill="black", anchor="ls")
     out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out)
     return img

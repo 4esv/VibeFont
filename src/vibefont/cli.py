@@ -11,7 +11,7 @@ from vibefont.build import build_font
 from vibefont.recipes import derive_missing
 from vibefont.render import comparison_sheet, proof_sheet, render_recreation
 from vibefont.segment import segment
-from vibefont.trace import trace_glyph
+from vibefont.trace import bearings, trace_glyph
 
 FULL_SET = string.ascii_letters + ".,-"
 PROOF_LINES = [
@@ -25,8 +25,6 @@ PROOF_LINES = [
 
 CAP_HEIGHT = 700  # font units the measured cap height maps to
 X_HEIGHT_FALLBACK = 470  # used when the sample has no capitals
-# TODO: derive per-glyph sidebearings (round vs flat) instead of a constant.
-SIDEBEARING = 60
 
 # Lowercase letters whose top sits at the x-height line.
 X_HEIGHT_CHARS = set("aceimnorsuvwxz")
@@ -64,19 +62,18 @@ def main() -> int:
             continue
         seen.add(box.char)
         outlines.append(trace_glyph(sheet.ink, box, scale,
-                                    SIDEBEARING, SIDEBEARING))
+                                    *bearings(box.char)))
     traced = len(outlines)
 
     missing = [c for c in FULL_SET if c not in seen]
     for ink, box in derive_missing(sheet, missing):
-        outlines.append(trace_glyph(ink, box, scale,
-                                    SIDEBEARING, SIDEBEARING))
+        outlines.append(trace_glyph(ink, box, scale, *bearings(box.char)))
 
     slug = args.family.replace(" ", "")
     ttf = args.out_dir / f"{slug}-Regular.ttf"
     build_font(outlines, args.family, CAP_HEIGHT, x_height, ttf)
 
-    recreation = render_recreation(sheet, ttf, scale, SIDEBEARING,
+    recreation = render_recreation(sheet, ttf, scale,
                                    args.out_dir / "font-sample-recreated.png")
     comparison_sheet(args.image, recreation,
                      args.out_dir / "font-sample-comparison.png")
