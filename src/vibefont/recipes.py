@@ -176,14 +176,18 @@ def lc_y(p, m):
 
 
 def lc_z(p, m):
-    s = m.xh / m.cap
+    # NOTE: scaling the arms by xh/cap (0.64) thins them to a 13px hairline
+    # that detaches from the diagonal; 0.8 keeps believable bar weight and
+    # the bars are repositioned so the top edge still lands at the x-height.
+    s = 0.8
     g = Glyph(m, 320)
-    # E arms scaled by xh/cap land the top bar's top edge at the x-height.
     top = p.cut("E", 150, 400, 440, 535).flip_h().scaled(1.18, s)
     bot = p.cut("E", 140, 401, -7, 60).scaled(1.13, s)
-    g.paste(top, 0)
+    g.paste(top, 0, dy=m.xh - 535 * s)
     g.paste(bot, 25)
-    g.fill_poly([(225, m.xh - 25), (295, m.xh - 25), (95, 30), (25, 30)])
+    g.erase(283, 200, 302, m.xh - 28)  # stem-fillet needle at the cut edge
+    # diagonal tops inside the bar (xh-10) so the seam can't crack open
+    g.fill_poly([(225, m.xh - 10), (295, m.xh - 10), (95, 30), (25, 30)])
     return g
 
 
@@ -260,6 +264,7 @@ def cap_K(p, m):
     # arm runs into the serif slab so the join can't pinch
     g.fill_poly([(150, 295), (185, 295), (455, 520), (420, 520)])  # arm
     g.paste(p.cut("V", 420, 591, 485, 545), 365)  # arm serif
+    g.erase(357, 505, 385, 560)  # detached serif-tip curl (see cap_X)
     g.paste(_Hfoot(p).scaled(0.85), 330)          # leg foot
     return g
 
@@ -285,10 +290,14 @@ def cap_T(p, m):
     # stem reaches behind the bar fillets so their seam can't notch
     stem = p.cut("H", 0, 230, 0, 510)
     g.paste(stem, 145)
-    g.erase(302, 150, 380, 360)
+    g.erase(296, 150, 380, 360)  # flush with the stem: no crossbar sliver
     bar = p.cut("E", 150, 400, 440, 535)
     g.paste(bar.flip_h(), 30)
     g.paste(bar, 280)
+    # H's cupped head serif rides along beside the stem; shave the hanging
+    # cup fragments so the bar underside runs flat
+    g.erase(150, 420, 208, 502)
+    g.erase(295, 420, 314, 502)
     return g
 
 
@@ -300,7 +309,12 @@ def cap_V_pair(p, m, dx):
 
 
 def cap_W(p, m):
-    return cap_V_pair(p, m, 380)
+    g = cap_V_pair(p, m, 380)
+    # where the two middle serifs lap, the inner rising tips poke above
+    # the shared cup and read as ticks; shave them so the dish runs smooth
+    g.erase(426, 526, 472, 560)
+    g.erase(584, 516, 612, 560)
+    return g
 
 
 def cap_X(p, m):
@@ -309,6 +323,10 @@ def cap_X(p, m):
     g.fill_poly([(496, 530), (520, 530), (64, 0), (40, 0)])   # thin TR-BL
     g.paste(p.cut("V", 0, 230, 485, 545), 20)     # top-left serif
     g.paste(p.cut("V", 420, 591, 485, 545), 360)  # top-right serif
+    # V's serif tips curl up where the cuts slice them; detached over the
+    # diagonals they read as floating ticks -- shave both inner ends
+    g.erase(226, 505, 252, 560)
+    g.erase(352, 505, 380, 560)
     g.paste(_Hfoot(p).scaled(0.8), 380)           # BR foot
     g.paste(_Hfoot(p).scaled(0.8), -25)           # BL foot
     return g
@@ -329,12 +347,16 @@ def cap_Z(p, m):
     # bar middles (stretching the arms smears the flags).
     g = Glyph(m, 480)
     g.paste(p.cut("E", 150, 400, 440, 535).flip_h(), 0)   # flag at left
+    g.erase(242, 430, 258, 499)  # stem-fillet needle at the arm's cut edge
     # arm stroke top sits at 524 by its cut edge; slope up to meet the
     # diagonal's 531 corner so neither seam ledges
     g.fill_poly([(225, 524), (470, 531), (470, 500), (225, 500)])
     g.paste(p.cut("E", 140, 401, -7, 60), 209)            # flag at right
+    g.erase(205, 36, 240, 110)   # same fillet, other arm, poking up
     g.fill_poly([(30, 34), (240, 34), (240, 0), (30, 0)])
-    g.fill_poly([(355, 528), (470, 528), (145, 30), (30, 30)])
+    # 80px horizontal width ~= the 64px capital stem once the ~36deg slope
+    # is accounted for (80 * cos 36); wider reads as a bolder glyph
+    g.fill_poly([(390, 528), (470, 528), (110, 30), (30, 30)])
     return g
 
 
