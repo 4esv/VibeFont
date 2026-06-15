@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eslop — fonts by an AI, flaws included</title>
+<style>
+
+@font-face {
+  font-family: 'Eslop Billboard';
+  src: url('EslopBillboard-Regular.woff2') format('woff2'),
+       url('EslopBillboard-Regular.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eslop Default';
+  src: url('EslopDefault-Regular.woff2') format('woff2'),
+       url('EslopDefault-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eslop Serious';
+  src: url('EslopSerious-Regular.woff2') format('woff2'),
+       url('EslopSerious-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eslop Code';
+  src: url('EslopCode-Regular.woff2') format('woff2'),
+       url('EslopCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Eslop Friendly';
+  src: url('EslopFriendly-Regular.woff2') format('woff2'),
+       url('EslopFriendly-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+:root { --ink: #111; --paper: #fff; --rule: #111; }
+* { margin: 0; box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: 'Eslop Default', sans-serif;
+  max-width: 64rem; margin: 0 auto; padding: 2rem 1.25rem 6rem;
+}
+h1 { font-family: 'Eslop Billboard'; font-size: clamp(3rem, 11vw, 7rem);
+     line-height: .95; letter-spacing: .01em; }
+.sub { font-family: 'Eslop Code', monospace; margin: 1rem 0 0;
+        font-size: .95rem; }
+.story { font-family: 'Eslop Serious'; font-size: 1.2rem; line-height: 1.55;
+          margin: 2.5rem 0; max-width: 46rem; }
+.story em { font-family: 'Eslop Friendly'; font-style: normal; }
+section { border-top: 4px solid var(--rule); margin-top: 3.5rem;
+           padding-top: 1.25rem; }
+section header { display: flex; justify-content: space-between;
+                  flex-wrap: wrap; gap: .5rem; align-items: baseline; }
+h2 { font-size: 1.4rem; }
+.tag { font-family: 'Eslop Code', monospace; font-size: .85rem; }
+.hero { font-size: clamp(1.8rem, 5.5vw, 3.4rem); line-height: 1.15;
+         margin: 1.5rem 0; }
+.alphabet { font-size: 1.5rem; line-height: 1.5; margin: 1rem 0;
+             word-break: break-all; }
+.body-sample { font-size: 1.05rem; line-height: 1.6; max-width: 42rem;
+                margin: 1rem 0; }
+.charset { display: grid; grid-template-columns: repeat(auto-fill, 2.6rem);
+            gap: 2px; margin: 1.25rem 0; }
+.charset span { border: 1px solid #ddd; height: 2.6rem; display: grid;
+                 place-items: center; font-size: 1.3rem; }
+pre { font-family: 'Eslop Code', monospace; background: #f4f4f4;
+       padding: .6rem .8rem; font-size: .85rem; overflow-x: auto; }
+footer { border-top: 4px solid var(--rule); margin-top: 4rem;
+          padding-top: 1.5rem; font-size: .95rem; line-height: 1.6; }
+footer p { margin-bottom: .6rem; }
+a { color: inherit; }
+</style>
+
+<h1>Eslop</h1>
+<p class="sub">five fonts // one transformer // zero supervision // OFL-1.1</p>
+
+<p class="story">Eslop is what happens when you let a language model run a
+type foundry. Every curve was chosen by something that has never held a
+pen, squinted at a street sign, or kerned in anger — just coordinates and
+<em>considerable optimism</em>. The flaws are not bugs; they are
+provenance. Install them, ship them, judge them. They are free, because
+charging money would invite questions.</p>
+
+
+<section id="billboard">
+  <header>
+    <h2>Eslop Billboard</h2>
+    <p class="tag">Display. Maximum ink, minimum apology.</p>
+  </header>
+  <p class="hero" style="font-family:'Eslop Billboard'">Sphinx of black quartz, judge my vow.</p>
+  <p class="alphabet" style="font-family:'Eslop Billboard'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+  abcdefghijklmnopqrstuvwxyz<br>0123456789 !?&amp;@#$%*()[]&#123;&#125;</p>
+  <p class="body-sample" style="font-family:'Eslop Billboard'">Headlines so heavy they qualify as infrastructure. Counters were preserved wherever the math allowed.</p>
+  <div class="charset" style="font-family:'Eslop Billboard'"><span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>•</span><span>…</span></div>
+  <pre>font-family: 'Eslop Billboard';  /* EslopBillboard-Regular.woff2 */</pre>
+</section>
+<section id="default">
+  <header>
+    <h2>Eslop Default</h2>
+    <p class="tag">Sans. The one it was going to pick anyway.</p>
+  </header>
+  <p class="hero" style="font-family:'Eslop Default'">Sphinx of black quartz, judge my vow.</p>
+  <p class="alphabet" style="font-family:'Eslop Default'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+  abcdefghijklmnopqrstuvwxyz<br>0123456789 !?&amp;@#$%*()[]&#123;&#125;</p>
+  <p class="body-sample" style="font-family:'Eslop Default'">A geometric sans assembled from first principles by something that has only ever read about geometry.</p>
+  <div class="charset" style="font-family:'Eslop Default'"><span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>•</span><span>…</span></div>
+  <pre>font-family: 'Eslop Default';  /* EslopDefault-Regular.woff2 */</pre>
+</section>
+<section id="serious">
+  <header>
+    <h2>Eslop Serious</h2>
+    <p class="tag">Slab serif. For when the stakes feel real.</p>
+  </header>
+  <p class="hero" style="font-family:'Eslop Serious'">Sphinx of black quartz, judge my vow.</p>
+  <p class="alphabet" style="font-family:'Eslop Serious'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+  abcdefghijklmnopqrstuvwxyz<br>0123456789 !?&amp;@#$%*()[]&#123;&#125;</p>
+  <p class="body-sample" style="font-family:'Eslop Serious'">Slab serifs detected automatically at every vertical terminal. Some of them are even in the right places.</p>
+  <div class="charset" style="font-family:'Eslop Serious'"><span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>•</span><span>…</span></div>
+  <pre>font-family: 'Eslop Serious';  /* EslopSerious-Regular.woff2 */</pre>
+</section>
+<section id="code">
+  <header>
+    <h2>Eslop Code</h2>
+    <p class="tag">Monospace. Every glyph is equal here.</p>
+  </header>
+  <p class="hero" style="font-family:'Eslop Code'">Sphinx of black quartz, judge my vow.</p>
+  <p class="alphabet" style="font-family:'Eslop Code'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+  abcdefghijklmnopqrstuvwxyz<br>0123456789 !?&amp;@#$%*()[]&#123;&#125;</p>
+  <p class="body-sample" style="font-family:'Eslop Code'">Exactly 600 units per glyph, no exceptions, no favorites. The i got a serif so it would stop looking lonely.</p>
+  <div class="charset" style="font-family:'Eslop Code'"><span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>•</span><span>…</span></div>
+  <pre>font-family: 'Eslop Code';  /* EslopCode-Regular.woff2 */</pre>
+</section>
+<section id="friendly">
+  <header>
+    <h2>Eslop Friendly</h2>
+    <p class="tag">Comic. Bottom-heavy on purpose, honest.</p>
+  </header>
+  <p class="hero" style="font-family:'Eslop Friendly'">Sphinx of black quartz, judge my vow.</p>
+  <p class="alphabet" style="font-family:'Eslop Friendly'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+  abcdefghijklmnopqrstuvwxyz<br>0123456789 !?&amp;@#$%*()[]&#123;&#125;</p>
+  <p class="body-sample" style="font-family:'Eslop Friendly'">Bottom-weighted, gently wobbly, every letter bounced by a fixed random seed. The b and the d wobble differently on purpose — mirror twins confuse readers.</p>
+  <div class="charset" style="font-family:'Eslop Friendly'"><span>!</span><span>"</span><span>#</span><span>$</span><span>%</span><span>&amp;</span><span>'</span><span>(</span><span>)</span><span>*</span><span>+</span><span>,</span><span>-</span><span>.</span><span>/</span><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>:</span><span>;</span><span>&lt;</span><span>=</span><span>&gt;</span><span>?</span><span>@</span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span><span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span><span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span><span>[</span><span>\</span><span>]</span><span>^</span><span>_</span><span>`</span><span>a</span><span>b</span><span>c</span><span>d</span><span>e</span><span>f</span><span>g</span><span>h</span><span>i</span><span>j</span><span>k</span><span>l</span><span>m</span><span>n</span><span>o</span><span>p</span><span>q</span><span>r</span><span>s</span><span>t</span><span>u</span><span>v</span><span>w</span><span>x</span><span>y</span><span>z</span><span>{</span><span>|</span><span>}</span><span>~</span><span>–</span><span>—</span><span>‘</span><span>’</span><span>“</span><span>”</span><span>•</span><span>…</span></div>
+  <pre>font-family: 'Eslop Friendly';  /* EslopFriendly-Regular.woff2 */</pre>
+</section>
+
+<footer>
+  <p><strong>Install:</strong> download the .ttf, double-click, press the
+  button that says install. Your OS has been pretending fonts are scary
+  for decades.</p>
+  <p><strong>Web:</strong> ship the .woff2 files and the
+  <code>@font-face</code> blocks above.</p>
+  <p><strong>License:</strong> SIL Open Font License 1.1 — free for any
+  use, embedding allowed, fsType 0, no strings. See OFL.txt.</p>
+  <p><strong>Provenance:</strong> designed and built end-to-end by Claude
+  (an AI by Anthropic): skeleton coordinates, stroke expansion, spacing,
+  kerning, this very page. A human said "make it endearing" and then
+  watched.</p>
+</footer>
+</html>
