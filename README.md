@@ -5,7 +5,7 @@ Computer, make font.
 A pipeline for making fonts with AI: draw a sample sheet, and it segments the
 rows, traces every glyph to vector outlines, derives the letters the sample
 doesn't cover from traced parts, and compiles an installable TTF with
-[fonttools](https://github.com/fonttools/fonttools) — plus proof and
+[fonttools](https://github.com/fonttools/fonttools), plus proof and
 comparison renders to judge the result by.
 
 ## Sample
@@ -23,8 +23,8 @@ The full character set, typed with the font's own metrics:
 
 ![proof sheet](assets/samples/proof.png)
 
-The font itself: [`assets/samples/VibeSerif-Regular.ttf`](assets/samples/VibeSerif-Regular.ttf)
-— download and double-click to install.
+The font itself: [`assets/samples/VibeSerif-Regular.ttf`](assets/samples/VibeSerif-Regular.ttf).
+Download and double-click to install.
 
 ## Quick start
 
@@ -110,7 +110,7 @@ image ──► segment (rows, glyph boxes, baselines)
 Derived glyphs are composed as bitmaps and retraced like drawn ones, so paste
 seams merge into clean outlines. The TTF carries the full name-record set,
 code-page bits, and fsSelection flags that macOS Font Book validation
-requires — it installs cleanly.
+requires. It installs cleanly.
 
 ## Layout
 
