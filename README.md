@@ -12,7 +12,7 @@ comparison renders to judge the result by.
 
 24 drawn glyphs in, 55 glyphs out. The four `hamburgevons` rows below carry
 every structural part of the alphabet; the other 31 characters (c d f i j k l
-p q t w x y z, their capitals, and `.,-`) are assembled from traced pieces —
+p q t w x y z, their capitals, and `.,-`) are assembled from traced pieces:
 stems from h/n, bowls from o/b, diagonals from v/V, arms from r/E.
 
 Source sheet above, the built font re-rendering it below:
@@ -45,8 +45,8 @@ comparison against the source image.
 
 Draw a sample sheet that follows four rules:
 
-1. **Ink is near-black** (every RGB channel < 128). Guides — baselines,
-   grids, zone strips — are light or colored, so they never read as ink.
+1. **Ink is near-black** (every RGB channel < 128). Guides (baselines,
+   grids, zone strips) are light or colored, so they never read as ink.
 2. **Rows** are separated by clear horizontal gaps; descenders must not touch
    the next row.
 3. **Glyphs** within a row are separated by clear vertical gaps; no touching
@@ -62,8 +62,8 @@ uv run vibefont my-sample.png --line hambu --line rgevons \
 ```
 
 More letters on the sheet means fewer derived ones. Letters the sheet doesn't
-cover come from recipes in [`src/vibefont/recipes.py`](src/vibefont/recipes.py)
-— per-letter assembly instructions tuned against proof renders. They are
+cover come from recipes in [`src/vibefont/recipes.py`](src/vibefont/recipes.py):
+per-letter assembly instructions tuned against proof renders. They are
 design decisions, not derivations, and they are where the iteration happens.
 
 ## Making fonts with AI
@@ -77,13 +77,13 @@ cd VibeFont && claude
 > the derived k looks too wide and its arm misses the stem — fix it
 ```
 
-- **make-font** — runs the pipeline, reads the proof/comparison renders,
+- **make-font**: runs the pipeline, reads the proof/comparison renders,
   reports traced vs derived, diagnoses segmentation failures.
-- **glyph-recipes** — writes and tunes derivation recipes: the parts toolkit,
+- **glyph-recipes**: writes and tunes derivation recipes: the parts toolkit,
   the coordinate system, and the craft rules (cut serif slabs shallow, never
   rotate serifed strokes, overlap joins generously...).
 
-Everything in this repo — pipeline, recipes, the sample font above — was
+Everything in this repo (pipeline, recipes, the sample font above) was
 built that way.
 
 ## How it works
